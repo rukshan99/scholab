@@ -1,1 +1,2 @@
-# scholab
+# Scholab
+### The Social Media Platform for Students
