@@ -2,6 +2,12 @@
 
 {% block content %}
 
-<h1>Home Template</h1>
+<h1>Home</h1>
+<h2>Available Rooms</h2>
+<ul>
+    {% for room in rooms %}
+    <li>{{room.id}} -- <a href="{% url 'room_view' room.id %}">{{room.name}}</a></li>
+    {% endfor %}
+</ul>
 
 {% endblock %}
