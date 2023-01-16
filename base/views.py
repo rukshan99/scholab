@@ -1,8 +1,28 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.db.models import Q
 from django.http import HttpResponse
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 from .models import Room, Topic
 from .forms import RoomForm
+
+def loginView(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        try:
+            user = User.objects.get(username=username)
+        except:
+            messages.error(request, 'Authentication failed. Please check the credentials again.')
+        authenticated_user = authenticate(request, username=username, password=password)
+        if authenticated_user is not None:
+            login(request, authenticated_user)
+            return redirect('home_view')
+        else:
+            messages.error(request, 'Authentication failed. Please check the credentials again.')
+    context = {}
+    return render(request, 'base/login_register.html', context)
 
 def home(request):
     q = request.GET.get('q') or ''
