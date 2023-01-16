@@ -6,16 +6,17 @@ from .forms import RoomForm
 
 def home(request):
     q = request.GET.get('q') or ''
-
     rooms = Room.objects.filter(
         Q(topic__name__icontains=q) |
         Q(name__icontains=q) |
         Q(host__username__icontains=q)
     )
+    room_count = rooms.count()
     topics = Topic.objects.all()
     context = {
         'rooms': rooms,
-        'topics': topics
+        'topics': topics,
+        'room_count': room_count
     }
     return render(request, 'base/home.html', context)
 
