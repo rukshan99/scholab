@@ -9,7 +9,7 @@
     {% for room in rooms %}
     <li>{{room.id}} -- <a href="{% url 'room_view' room.id %}">{{room.name}}</a>
         -- <a href="{% url 'update_room_view' room.id %}"> Edit</a>
-        -- <a href="{% url 'delete_view' room.id %}"> Delete</a></li>
+        -- <a href="{% url 'delete_room_view' room.id %}"> Delete</a></li>
     {% endfor %}
 </ul>
 
