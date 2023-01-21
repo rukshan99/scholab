@@ -138,5 +138,11 @@ def deleteMessage(request, id):
 
     if request.method == 'POST':
         message.delete()
+        try:
+            user_message = Message.objects.get(user=message.user, room=message.room)
+        except Message.DoesNotExist:
+            user_message = None
+        if user_message is None:
+            message.room.participants.remove(message.user)
         return redirect('room_view', id=message.room.id)
     return render(request, 'base/delete.html', {'obj': message})
