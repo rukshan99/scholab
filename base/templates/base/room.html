@@ -4,6 +4,17 @@
 
 <h1>Room: {{room.name}}</h1>
 
-{{room.description}}
+<p>{{room.description}}</p>
+
+<div class="comment-wrapper">
+    <h3>Conversation</h3>
+    <hr>
+    {% for message in room_messages %}
+    <div>
+        <small>@{{message.user}} {{message.created | timesince}} ago</small>
+        <p>{{message.body}}</p>
+    </div>
+    {% endfor %}
+</div>
 
 {% endblock %}
