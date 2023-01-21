@@ -9,6 +9,9 @@ from .models import Room, Topic
 from .forms import RoomForm
 
 def loginView(request):
+    if request.user.is_authenticated:
+        return redirect('home_view')
+        
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
