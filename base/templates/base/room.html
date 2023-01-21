@@ -19,9 +19,10 @@
 
 {% if request.user.is_authenticated %}
 <div class="comment-form">
-    <form action="POST" action="">
+    <form method="POST" action="">
         {% csrf_token %}
         <input type="text" name="body" placeholder="Write your message here...">
+        <input type="submit" value="Send">
     </form>
 </div>
 {% endif %}
