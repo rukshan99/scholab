@@ -13,16 +13,21 @@ def loginView(request):
         password = request.POST.get('password')
         try:
             user = User.objects.get(username=username)
+            authenticated_user = authenticate(request, username=username, password=password)
+            if authenticated_user is not None:
+                login(request, authenticated_user)
+                return redirect('home_view')
+            else:
+                messages.error(request, 'Authentication failed. Please check the credentials again.')
         except:
             messages.error(request, 'Authentication failed. Please check the credentials again.')
-        authenticated_user = authenticate(request, username=username, password=password)
-        if authenticated_user is not None:
-            login(request, authenticated_user)
-            return redirect('home_view')
-        else:
-            messages.error(request, 'Authentication failed. Please check the credentials again.')
+       
     context = {}
     return render(request, 'base/login_register.html', context)
+
+def logoutView(request):
+    logout(request)
+    return redirect('home_view')
 
 def home(request):
     q = request.GET.get('q') or ''
