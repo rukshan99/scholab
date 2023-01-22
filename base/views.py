@@ -93,6 +93,20 @@ def room(request, id):
     }
     return render(request, 'base/room.html', context)
 
+def profileView(request, id):
+    user = User.objects.get(id=id)
+    rooms = user.room_set.all()
+    user_messages = user.message_set.all()
+    topics = Topic.objects.all()
+
+    context = {
+        'user': user,
+        'rooms': rooms,
+        'room_activity': user_messages,
+        'topics': topics
+    }
+    return render(request, 'base/profile.html', context)
+
 @login_required(login_url='login_view')
 def createRoom(request):
     form = RoomForm()
