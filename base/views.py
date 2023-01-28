@@ -115,6 +115,7 @@ def createRoom(request):
         if form.is_valid():
             room = form.save(commit=False)
             room.host = request.user
+            room.participants.add(request.user)
             room.save()
             return redirect('home_view')
     context = {'form': form}
