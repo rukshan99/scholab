@@ -14,7 +14,7 @@
     <div class="roomListRoom__content">
         <a href="{% url 'room_view' room.id %}">{{room.name}}</a>
       <p>
-        {{room.description}}
+        {{room.description | truncatechars_html:150}}
       </p>
     </div>
     <div class="roomListRoom__meta">
