@@ -62,7 +62,7 @@ def home(request):
         Q(host__username__icontains=q)
     )
     room_count = rooms.count()
-    topics = Topic.objects.all()
+    topics = Topic.objects.all()[0:5]
     room_activity = Message.objects.filter(Q(room__topic__name__icontains=q))
 
     context = {
