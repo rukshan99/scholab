@@ -19,7 +19,7 @@
           <p>@{{user.username}}</p>
           {% if request.user == user %}
           <a
-            href="{% url 'profile_view' user.id %}"
+            href="{% url 'update_profile_view' %}"
             class="btn btn--main btn--pill"
             >Edit Profile</a
           >
