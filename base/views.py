@@ -75,10 +75,13 @@ def home(request):
 
 def room(request, id):
     room = Room.objects.get(id=id)
-    messages = room.message_set.all()
+    room_messages = room.message_set.all()
     participants = room.participants.all()
 
     if request.method == 'POST':
+        if request.user.is_authenticated == False:
+            messages.error(request, 'You need to login first.')
+            return render(request, 'base/login_register.html', {'page': 'login'})
         message = Message.objects.create(
             user = request.user,
             room = room,
@@ -88,7 +91,7 @@ def room(request, id):
         return redirect('room_view', id=room.id)
     context = {
         'room': room,
-        'room_messages': messages,
+        'room_messages': room_messages,
         'participants': participants
     }
     return render(request, 'base/room.html', context)
