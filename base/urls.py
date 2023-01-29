@@ -18,5 +18,6 @@ urlpatterns = [
 
     path('delete-message/<str:id>/', views.deleteMessage, name='delete_message_view'),
 
-    path('topics/', views.topicsView, name='topics_view')
+    path('topics/', views.topicsView, name='topics_view'),
+    path('activity/', views.activityView, name='activity_view')
 ]

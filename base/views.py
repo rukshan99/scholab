@@ -211,3 +211,10 @@ def topicsView(request):
         'topics': topics
     }
     return render(request, 'base/topics.html', context)
+
+def activityView(request):
+    room_activity = Message.objects.all()
+    context = {
+        'room_activity': room_activity
+    }
+    return render(request, 'base/activity.html', context)
