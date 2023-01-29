@@ -200,3 +200,14 @@ def updateUser(request):
     else:
         print(form.errors.as_data())
     return render(request, 'base/update_user.html', {'form': form})
+
+
+def topicsView(request):
+    q = request.GET.get('q') or ''
+    topics = Topic.objects.filter(
+        Q(name__icontains=q)
+    )
+    context = {
+        'topics': topics
+    }
+    return render(request, 'base/topics.html', context)
