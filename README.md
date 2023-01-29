@@ -63,7 +63,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Scholab is an online collaboration platform for student to interact with each other and share knowledge on interesting topics they learn.
+Scholab is an online collaboration platform for students to interact with each other and share knowledge on interesting topics they learn.
 
 
 
